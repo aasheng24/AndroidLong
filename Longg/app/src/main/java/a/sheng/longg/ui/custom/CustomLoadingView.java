@@ -9,6 +9,8 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 
 import androidx.annotation.Nullable;
 
@@ -78,6 +80,7 @@ public class CustomLoadingView extends View {
             }
         });
         animator.start();
+        testTweenAnima();
     }
 
     private void stopAnimation() {
@@ -85,5 +88,11 @@ public class CustomLoadingView extends View {
             animator.cancel();
             animator = null;
         }
+    }
+
+    private void testTweenAnima() {
+        Animation animation = new AlphaAnimation(0f,1f);
+        animation.setDuration(5000);
+        this.startAnimation(animation);
     }
 }
