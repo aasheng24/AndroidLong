@@ -1,2 +1,3 @@
 rootProject.name = "Longg"
 include ':app'
+include ':lib'
