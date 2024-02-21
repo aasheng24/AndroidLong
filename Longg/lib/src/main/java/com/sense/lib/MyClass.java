@@ -1,12 +1,42 @@
 package com.sense.lib;
 
+import java.util.ArrayList;
+
 public class MyClass {
     public static void main(String[] args) {
         //System.out.println("ez main");
         //maopao();
-        kuai();
+        //kuai();
+        ziji();
     }
 
+
+    static ArrayList<ArrayList<Integer>> zijiR = new ArrayList<>();
+    private static void ziji() {
+        int[] ori = new int[]{1,2,3};
+        ArrayList<Integer> list = new ArrayList<>();
+        zijiB(ori,list);
+        for (ArrayList list1:zijiR) {
+            for (int i=0;i< list1.size();i++) {
+                System.out.print(list1.get(i)+" ");
+            }
+            System.out.println();
+        }
+    }
+    private static void zijiB(int[] ori, ArrayList<Integer> list) {
+        if (list.size() >= ori.length) {
+            zijiR.add(new ArrayList<Integer>(list));
+            return;
+        }
+        for (int i=0;i<ori.length;i++) {
+            if (list.contains(ori[i])) {
+                continue;
+            }
+            list.add(ori[i]);
+            zijiB(ori,list);
+            list.remove(list.size()-1);
+        }
+    }
 
     private static void kuai() {
         int[] ori = new int[]{5,4,1,6,3,7};
