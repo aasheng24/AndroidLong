@@ -3,8 +3,9 @@ package com.sense.lib;
 import java.util.ArrayList;
 
 public class MyClass {
+    static int i;
     public static void main(String[] args) {
-        //System.out.println("ez main");
+        System.out.println(i);
         //maopao();
         //kuai();
         ziji();
