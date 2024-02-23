@@ -1,6 +1,10 @@
 package com.sense.lib;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MyClass {
     static int i;
@@ -88,5 +92,23 @@ public class MyClass {
         for (int i=0;i<ori.length;i++) {
             System.out.print(ori[i] + " ");
         }
+    }
+
+    private static void compare() {
+        HashMap<String ,Integer> map = new HashMap<>();
+        List<Map.Entry<String,Integer>> list = new ArrayList<>();
+        map.put("haha",3);
+        map.put("hehe",3);
+        for (Map.Entry entry:map.entrySet()) {
+            list.add(entry);
+        }
+
+        list.sort(new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return o1.getValue() - o2.getValue();
+            }
+        });
+
     }
 }
