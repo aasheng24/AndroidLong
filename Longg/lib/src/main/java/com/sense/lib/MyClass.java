@@ -9,12 +9,33 @@ import java.util.Map;
 public class MyClass {
     static int i;
     public static void main(String[] args) {
-        System.out.println(i);
+        //System.out.println(i);
         //maopao();
         //kuai();
-        ziji();
+        //ziji();
+        testList();
     }
 
+    public static void testList() {
+        ArrayList<Integer> sor = new ArrayList<>();
+        sor.add(1);
+        sor.add(101);
+        sor.add(2);
+        sor.add(3);
+        sor.add(102);
+        ArrayList<Integer> ret = delete(sor);
+        for (Integer i:ret) {
+            System.out.println(i);
+        }
+    }
+    private static ArrayList<Integer> delete(ArrayList<Integer> list) {
+        for (int i=0;i<list.size();i++) {
+            if (list.get(i) > 100) {
+                list.remove(i);
+            }
+        }
+        return list;
+    }
 
     static ArrayList<ArrayList<Integer>> zijiR = new ArrayList<>();
     private static void ziji() {
