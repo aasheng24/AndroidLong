@@ -18,10 +18,10 @@ public class MyClass {
 
     public static void testList() {
         ArrayList<Integer> sor = new ArrayList<>();
-        sor.add(1);
+        sor.add(99);
         sor.add(101);
-        sor.add(2);
-        sor.add(3);
+        sor.add(200);
+        sor.add(300);
         sor.add(102);
         ArrayList<Integer> ret = delete(sor);
         for (Integer i:ret) {
@@ -29,11 +29,13 @@ public class MyClass {
         }
     }
     private static ArrayList<Integer> delete(ArrayList<Integer> list) {
+        ArrayList<Integer> ret = new ArrayList<>();
         for (int i=0;i<list.size();i++) {
-            if (list.get(i) > 100) {
-                list.remove(i);
+            if (list.get(i) < 100) {
+                ret.add(list.get(i));
             }
         }
+
         return list;
     }
 
