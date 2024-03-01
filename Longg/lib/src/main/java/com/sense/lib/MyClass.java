@@ -18,12 +18,27 @@ public class MyClass {
 
     }
 
+    static void testFan(){
+        Bar bar = new Bar();
+        ArrayList<Bar> list = new ArrayList<Bar>();
+        list.add(bar);
+        fun(list);
+    }
+    public static class Fox{
+
+    }
+    public static class Bar extends Fox{
+
+    }
+    static void fun(ArrayList<? extends Fox> list){}
+
+
+
     private static void search() {
         int[] sor = new int[]{0,1,2,3,4,5,6,7,8,9,9,9,9};
         int target = 10;
         System.out.println(erfen(sor,target));
     }
-
     private static int erfen(int[] sor, int target) {
         int left = 0;
         int right = sor.length-1;
