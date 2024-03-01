@@ -13,7 +13,31 @@ public class MyClass {
         //maopao();
         //kuai();
         //ziji();
-        testList();
+        //testList();
+        search();
+
+    }
+
+    private static void search() {
+        int[] sor = new int[]{0,1,2,3,4,5,6,7,8,9,9,9,9};
+        int target = 10;
+        System.out.println(erfen(sor,target));
+    }
+
+    private static int erfen(int[] sor, int target) {
+        int left = 0;
+        int right = sor.length-1;
+        while(left<=right) {
+            int mid = (left+right)/2;
+            if (sor[mid] > target) {
+                right = mid-1;
+            }else if (sor[mid] < target) {
+                left = mid+1;
+            }else {
+                return mid;
+            }
+        }
+        return -1;
     }
 
     public static void testList() {
