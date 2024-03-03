@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 public class MyClass {
     static int i;
@@ -17,8 +20,8 @@ public class MyClass {
         //ziji();
         //testList();
         //search();
-        //testPri();
-        testCompare();
+        testPri();
+        //testCompare();
 
     }
     private static void testCompare() {
@@ -40,35 +43,49 @@ public class MyClass {
     }
 
     private static void testPri(){
-        int[] arr = {1, 3, 3, 3, 2, 4, 4, 4, 5};
+        int[] arr = {6, 1, 3, 3, 3, 2, 4, 4, 4, 5};
         int[] result = removeDuplicate(arr);
         for (int num : result) {
             System.out.print(num + " ");
         }
     }
     private static int[] removeDuplicate(int[] arr) {
-        Map<Integer,Integer> freqMap = new HashMap<>();
-        for (int num:arr) {
-            freqMap.put(num,freqMap.getOrDefault(num,0)+1);
+        final Map<Integer, Integer> freqMap = new HashMap<>();
+        final Map<Integer, Integer> firstOccurrenceMap = new HashMap<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            int num = arr[i];
+            freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+            firstOccurrenceMap.putIfAbsent(num, i);
         }
-        PriorityQueue<Map.Entry<Integer,Integer>> pq = new PriorityQueue<>(new Comparator<Map.Entry<Integer, Integer>>() {
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
             @Override
-            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
-                if(o2.getValue()!=o1.getValue()) {
-                    return o2.getValue() - o1.getValue();
-                }else {
-                    return 1;
+            public int compare(Integer num1, Integer num2) {
+                int freq1 = freqMap.get(num1);
+                int freq2 = freqMap.get(num2);
+                if (freq1 != freq2) {
+                    return freq2 - freq1;
+                } else {
+                    int firstOccurrence1 = firstOccurrenceMap.get(num1);
+                    int firstOccurrence2 = firstOccurrenceMap.get(num2);
+                    return firstOccurrence1 - firstOccurrence2;
                 }
             }
         });
-        for (Map.Entry<Integer,Integer> entry: freqMap.entrySet()) {
-            pq.offer(entry);
+
+        for (int num : arr) {
+            if (!pq.contains(num)) {
+                pq.offer(num);
+            }
         }
+
         int[] result = new int[pq.size()];
         int idx = 0;
         while (!pq.isEmpty()) {
-            result[idx++] = pq.poll().getKey();
+            result[idx++] = pq.poll();
         }
+
         return result;
     }
 
