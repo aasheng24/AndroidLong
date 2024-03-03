@@ -1,10 +1,12 @@
 package com.sense.lib;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public class MyClass {
     static int i;
@@ -14,8 +16,60 @@ public class MyClass {
         //kuai();
         //ziji();
         //testList();
-        search();
+        //search();
+        //testPri();
+        testCompare();
 
+    }
+    private static void testCompare() {
+        int[] sor = new int[]{3,1,2,5,4};
+        List<Integer> list = new ArrayList<>();
+        for (int i=0;i<sor.length;i++) {
+            list.add(sor[i]);
+        }
+        Collections.sort(list, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2-o1;
+            }
+        });
+        for (int num : list) {
+            System.out.print(num + " ");
+        }
+
+    }
+
+    private static void testPri(){
+        int[] arr = {1, 3, 3, 3, 2, 4, 4, 4, 5};
+        int[] result = removeDuplicate(arr);
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+    }
+    private static int[] removeDuplicate(int[] arr) {
+        Map<Integer,Integer> freqMap = new HashMap<>();
+        for (int num:arr) {
+            freqMap.put(num,freqMap.getOrDefault(num,0)+1);
+        }
+        PriorityQueue<Map.Entry<Integer,Integer>> pq = new PriorityQueue<>(new Comparator<Map.Entry<Integer, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                if(o2.getValue()!=o1.getValue()) {
+                    return o2.getValue() - o1.getValue();
+                }else {
+                    return 1;
+                }
+            }
+        });
+        for (Map.Entry<Integer,Integer> entry: freqMap.entrySet()) {
+            pq.offer(entry);
+        }
+        int[] result = new int[pq.size()];
+        int idx = 0;
+        while (!pq.isEmpty()) {
+            result[idx++] = pq.poll().getKey();
+        }
+        return result;
     }
 
     static void testFan(){
