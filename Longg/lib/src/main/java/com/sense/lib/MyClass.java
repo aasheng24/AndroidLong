@@ -1,6 +1,7 @@
 package com.sense.lib;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -20,10 +21,35 @@ public class MyClass {
         //ziji();
         //testList();
         //search();
-        testPri();
+        //testPri();
         //testCompare();
-
+        testZudui();
     }
+
+    //团队组队
+    private static void testZudui(){
+        int[] ability = new int[]{1,1,9};
+        int min = 8;
+        Arrays.sort(ability);
+        int ret =0;
+        int left = 0,right = ability.length-1;
+        while (left<right) {
+            while(ability[right] >= min) {
+                ret++;
+                right--;
+            }
+            if (ability[left]+ability[right]>=min) {
+                ret++;
+                left++;
+                right--;
+            } else {
+                left++;
+            }
+
+        }
+        System.out.println(ret);
+    }
+
     private static void testCompare() {
         int[] sor = new int[]{3,1,2,5,4};
         List<Integer> list = new ArrayList<>();
@@ -239,9 +265,16 @@ public class MyClass {
         list.sort(new Comparator<Map.Entry<String, Integer>>() {
             @Override
             public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-                return o1.getValue() - o2.getValue();
+                //return o1.getValue() - o2.getValue();
+                String name ="haha";
+                String name2 = "hehe";
+                return name.compareTo(name2);
             }
         });
 
+
+
     }
+
+
 }
