@@ -237,21 +237,6 @@ public class MyClass {
         kuaiP(ori,left+1,end);
     }
 
-    private static void maopao() {
-        int[] ori = new int[]{5,4,1,6,3,7};
-        for (int i=0;i<ori.length;i++) {
-            for (int j=0;j<ori.length-i-1;j++) {
-                if (ori[j+1]<ori[j]) {
-                    int temp = ori[j+1];
-                    ori[j+1] = ori[j];
-                    ori[j] = temp;
-                }
-            }
-        }
-        for (int i=0;i<ori.length;i++) {
-            System.out.print(ori[i] + " ");
-        }
-    }
 
     private static void compare() {
         HashMap<String ,Integer> map = new HashMap<>();
